@@ -1,4 +1,5 @@
 import React from "react";
+import Head from "next/head";
 import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { atomDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
@@ -31,30 +32,38 @@ const BlogDetail = ({ postData }) => {
   };
 
   return (
-    <div className="">
-      <div className="m-5 bg-white">
-        <div className="flex">
-          <Image
-            className="h-52 rounded-br-full"
-            width={1000}
-            height={1000}
-            src={`/post-image/${postData.slug}/${postData.image}`}
-          />
-          <div>
-            <div className="m-5 text-gray-500 text-3xl">{postData.excerpt}</div>
-            <div className="mt-5 font-mono text-gray-500 text-xl">
-              {postData.date}
+    <>
+      <Head>
+        <meta name="description" content={postData.excerpt} />
+        <title>{postData.title}</title>
+      </Head>
+      <div className="">
+        <div className="m-5 bg-white">
+          <div className="flex">
+            <Image
+              className="h-52 rounded-br-full"
+              width={1000}
+              height={1000}
+              src={`/post-image/${postData.slug}/${postData.image}`}
+            />
+            <div>
+              <div className="m-5 text-gray-500 text-3xl">
+                {postData.excerpt}
+              </div>
+              <div className="mt-5 font-mono text-gray-500 text-xl">
+                {postData.date}
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className="m-5 p-5">
-          <ReactMarkdown components={customRenderers}>
-            {postData.content}
-          </ReactMarkdown>
+          <div className="m-5 p-5">
+            <ReactMarkdown components={customRenderers}>
+              {postData.content}
+            </ReactMarkdown>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
