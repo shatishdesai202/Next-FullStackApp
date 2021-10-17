@@ -9,7 +9,7 @@ export default async function handler(req, res) {
     let client;
     try {
       client = await MongoClient.connect(
-        "mongodb+srv://shatish_desai:JrBuYFeRYxEgecNg@cluster0.zyfb8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+        `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.zyfb8.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`
       );
     } catch (error) {
       res.status(500).json({ message: "Could not connect with database" });
@@ -28,9 +28,10 @@ export default async function handler(req, res) {
     client.close();
   } else {
     let client;
+
     try {
       client = await MongoClient.connect(
-        "mongodb+srv://shatish_desai:JrBuYFeRYxEgecNg@cluster0.zyfb8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+        `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.zyfb8.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`
       );
     } catch (error) {
       res.status(500).json({ message: "Could not connect with database" });
