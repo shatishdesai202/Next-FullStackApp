@@ -6,17 +6,17 @@ const Header = () => {
   return (
     <div className="sticky top-0 w-full py-4 z-50 bg-white">
       <div className="flex justify-between">
-        <div className="pl-5">
+        <div className="pl-5 cursor-pointer">
           <Link href="/">
             <Image src="/next-image.png" height={50} width={100} />
           </Link>
         </div>
         <div className="text-xl mr-14  items-center flex gap-2">
           <Link className="" href="/blog">
-            <span className="hover:underline">All blog</span>
+            <span className="hover:underline cursor-pointer">All blog</span>
           </Link>
           <Link href="/contact">
-            <span className="hover:underline">Contact</span>
+            <span className="hover:underline cursor-pointer">Contact</span>
           </Link>
         </div>
       </div>

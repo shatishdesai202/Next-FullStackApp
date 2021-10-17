@@ -39,8 +39,8 @@ const contact = ({ initialMessageCount }) => {
   return (
     <div className="m-40 bg-white p-20 ">
       <form onSubmit={formik.handleSubmit}>
-        <span className="flex justify-center">
-          Total contact-us query[using SWR-revalidateIfStale]: {data}
+        <span className="flex justify-center font-mono">
+          Total Messages[using SWR-revalidateIfStale]: {data}
         </span>
         <div className="flex justify-center items-center">
           <div action="#" className="w-full md:w-3/4 lg:w-3/6 p-4">
