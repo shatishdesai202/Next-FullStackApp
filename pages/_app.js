@@ -1,9 +1,11 @@
 import "tailwindcss/tailwind.css";
 import Head from "next/head";
 import Layout from "../component/Layout";
+import { Provider } from "next-auth/client";
 
 function MyApp({ Component, pageProps }) {
   return (
+    // <Provider session={pageProps.session}>
     <Layout>
       <Head>
         <meta
@@ -14,6 +16,7 @@ function MyApp({ Component, pageProps }) {
       </Head>
       <Component {...pageProps} />
     </Layout>
+    // </Provider>
   );
 }
 
