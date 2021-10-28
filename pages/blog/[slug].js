@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { getSession } from "next-auth/client";
 import Head from "next/head";
 import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
@@ -6,8 +7,26 @@ import { atomDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import Image from "next/image";
 
 import { getAllPostSlug, getPostData } from "../../lib/post-util";
+import { useRouter } from "next/router";
 
 const BlogDetail = ({ postData }) => {
+  const router = useRouter();
+
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    getSession().then((session) => {
+      if (!session) {
+        router.push("/signin");
+      } else {
+        setLoading(false);
+      }
+    });
+  }, []);
+
+  if (loading) {
+    return <p>Loading....</p>;
+  }
+
   const customRenderers = {
     img(props) {
       return (
