@@ -1,9 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Head from "next/head";
+import { getSession } from "next-auth/client";
 import Post from "../../component/Post";
 import { getAllPost } from "../../lib/post-util";
+import { useRouter } from "next/router";
 
 const Blog = ({ allPost }) => {
+  const router = useRouter();
+
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    getSession().then((session) => {
+      if (!session) {
+        router.push("/signin");
+      } else {
+        setLoading(false);
+      }
+    });
+  }, []);
+
+  if (loading) {
+    return <p>Loading....</p>;
+  }
+
   return (
     <div className="bg-gray-300">
       <Head>

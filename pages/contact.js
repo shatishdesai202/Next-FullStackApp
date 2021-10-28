@@ -1,11 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Head from "next/head";
+import useSWR from "swr";
+import { getSession } from "next-auth/client";
 import { useFormik } from "formik";
 import { toast } from "react-toastify";
-import useSWR from "swr";
-import Head from "next/head";
+import { useRouter } from "next/router";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 const contact = ({ initialMessageCount }) => {
+  const router = useRouter();
+
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    getSession().then((session) => {
+      if (!session) {
+        router.push("/signin");
+      } else {
+        setLoading(false);
+      }
+    });
+  }, []);
+
   const { data, error } = useSWR("/api/contact", fetcher, {
     fallbackData: initialMessageCount,
     revalidateIfStale: true,
@@ -36,6 +51,10 @@ const contact = ({ initialMessageCount }) => {
       }
     },
   });
+
+  if (loading) {
+    return <p>Loading....</p>;
+  }
 
   return (
     <>
