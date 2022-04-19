@@ -56,7 +56,7 @@ const contact = ({ initialMessageCount }) => {
     return <p>Loading....</p>;
   }
 
-  console.warn("branch 3");
+  console.warn("branch 1");
 
   return (
     <>
