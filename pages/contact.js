@@ -56,7 +56,9 @@ const contact = ({ initialMessageCount }) => {
     return <p>Loading....</p>;
   }
 
-  console.warn("branch 1");
+  console.log("test git");
+  console.log("test git1");
+  console.log("test git2");
 
   return (
     <>
