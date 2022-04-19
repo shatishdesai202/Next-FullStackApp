@@ -134,7 +134,7 @@ const contact = ({ initialMessageCount }) => {
     </>
   );
 };
-
+console.warn("3-branch");
 export default contact;
 
 export async function getStaticProps(context) {
