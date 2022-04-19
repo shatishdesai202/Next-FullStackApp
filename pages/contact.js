@@ -135,6 +135,7 @@ const contact = ({ initialMessageCount }) => {
   );
 };
 
+console.log("test");
 export default contact;
 
 export async function getStaticProps(context) {
