@@ -135,6 +135,7 @@ const contact = ({ initialMessageCount }) => {
   );
 };
 console.warn("3-branch");
+console.warn("new branch");
 export default contact;
 
 export async function getStaticProps(context) {
